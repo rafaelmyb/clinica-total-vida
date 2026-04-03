@@ -1,0 +1,69 @@
+"use client";
+
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+
+const WHATSAPP_URL = "https://wa.me/+556932154275";
+
+const overlaySweep =
+  "pointer-events-none absolute inset-0 origin-left scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100";
+
+const inlineAnchorClass =
+  "group relative inline-flex items-center overflow-hidden rounded-full border border-brand/15 bg-white/80 px-4 py-2.5 text-xs font-semibold uppercase tracking-wider shadow-sm backdrop-blur-sm transition-[border-color] duration-300 ease-out hover:border-brand sm:text-sm";
+
+const heroAnchorClass =
+  "group relative inline-flex items-center overflow-hidden rounded-full border border-white/20 bg-brand px-4 py-2.5 text-xs font-semibold uppercase tracking-wider shadow-sm transition-[border-color] duration-300 ease-out hover:border-brand/15 sm:text-sm";
+
+type Props = {
+  className?: string;
+  variant?: "inline" | "fullWidth" | "hero";
+};
+
+export const ScheduleConsultationLink = ({
+  className,
+  variant = "fullWidth",
+}: Props) => {
+  const layoutClass =
+    variant === "fullWidth" ? "w-full justify-center py-3.5" : "";
+  const isHero = variant === "hero";
+
+  const anchorClass = [
+    isHero ? heroAnchorClass : inlineAnchorClass,
+    !isHero ? layoutClass : "",
+    className,
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+  return (
+    <a
+      href={WHATSAPP_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={anchorClass}
+    >
+      <span
+        className={`${overlaySweep} ${isHero ? "bg-white" : "bg-brand"}`}
+        aria-hidden
+      />
+      {isHero ? (
+        <span className="relative z-10 flex items-center gap-2">
+          <WhatsAppIcon
+            className="h-5 w-5 shrink-0 text-[#25D366]"
+            aria-hidden
+          />
+          <span className="text-white transition-colors duration-300 ease-out group-hover:text-brand">
+            Agendar consulta
+          </span>
+        </span>
+      ) : (
+        <span className="relative z-10 flex items-center gap-2 text-brand transition-colors duration-300 ease-out group-hover:text-white">
+          <WhatsAppIcon
+            className="h-5 w-5 shrink-0 text-[#25D366] transition-colors duration-300 ease-out"
+            aria-hidden
+          />
+          {variant === "inline" ? "" : "Agendar consulta"}
+        </span>
+      )}
+    </a>
+  );
+};

@@ -1,26 +1,106 @@
 @import "tailwindcss";
 
+/*
+ * Brand colors follow the official logo (public/images/clinica/2.png):
+ * primary burgundy/maroon, secondary gold, neutrals black/white.
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #faf8f7;
+  --foreground: #1a1214;
+  /* Matches fixed header block height for first-section padding (see SiteHeader). */
+  --site-header-height: 4.5rem;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-canvas: #faf8f7;
+  --color-ink: #1a1214;
+  --color-muted: #5c4f52;
+
+  /* Primary brand — burgundy from logo (“Total”, icon ring & heart) */
+  --color-brand: #5c1a2e;
+  --color-brand-dark: #441425;
+  --color-brand-soft: #f3e9ed;
+  --color-brand-muted: #8b4a60;
+
+  /* Secondary — gold from logo (icon curves, heart outline, accents) */
+  --color-brand-gold: #c9a227;
+  --color-brand-gold-soft: #f5edd8;
+
+  /* Named aliases (doctor sub-pages & legacy class names) */
+  --color-clinic-burgundy: #5c1a2e;
+  --color-clinic-burgundy-dark: #441425;
+  --color-clinic-gold: #c9a227;
+  --color-clinic-gold-soft: #e8d9a8;
+
+  --color-dr-bronze: #8b5c2a;
+  --color-dr-bronze-light: #b8860b;
+  --color-dr-gold: #d4af37;
+
+  --color-dra-taupe: #bca992;
+  --color-dra-taupe-deep: #8f7a63;
+  --color-dra-rose-gold: #c9a088;
+
+  --font-sans: var(--font-figtree);
+  --font-serif: var(--font-figtree);
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+
+  --shadow-card: 0 22px 50px -12px rgb(92 26 46 / 0.12);
+  --shadow-card-hover: 0 28px 60px -12px rgb(92 26 46 / 0.18);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+:where(a, button, input, textarea, select):focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.45s ease-out both;
+}
+
+/* Smooth bottom→top brand wash for home team text cards (no banding at stops). */
+.home-team-value-card {
+  background-color: #ffffff;
+  background-image: linear-gradient(
+    to top,
+    rgb(92 26 46 / 0.26) 0%,
+    rgb(92 26 46 / 0.14) 10%,
+    rgb(92 26 46 / 0.07) 20%,
+    rgb(243 233 237 / 0.55) 42%,
+    rgb(255 255 255 / 0.88) 72%,
+    #ffffff 100%
+  );
+  background-clip: padding-box;
+}
+
+.home-team-value-card:hover {
+  background-image: linear-gradient(
+    to top,
+    rgb(92 26 46 / 0.32) 0%,
+    rgb(92 26 46 / 0.17) 10%,
+    rgb(92 26 46 / 0.09) 20%,
+    rgb(243 233 237 / 0.62) 42%,
+    rgb(255 255 255 / 0.9) 72%,
+    #ffffff 100%
+  );
 }
