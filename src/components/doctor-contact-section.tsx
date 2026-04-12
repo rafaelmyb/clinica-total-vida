@@ -32,8 +32,7 @@ const rightCardClass: Record<Props["variant"], string> = {
 };
 
 const phoneLinkClass: Record<Props["variant"], string> = {
-  potthyer:
-    "font-semibold text-dr-gold underline-offset-4 hover:underline",
+  potthyer: "font-semibold text-dr-gold underline-offset-4 hover:underline",
   quiele:
     "font-semibold text-dra-taupe-deep underline-offset-4 hover:underline",
 };
@@ -62,9 +61,9 @@ export const DoctorContactSection = ({ variant }: Props) => {
   const arrow = arrowClass[variant];
 
   return (
-    <section className={sectionClass[variant]}>
+    <section id="contato" className={sectionClass[variant]}>
       <Container>
-        <div className="mx-auto grid max-w-5xl gap-10 lg:grid-cols-2 lg:gap-14">
+        <div className="mx-auto grid max-w-5xl gap-10 lg:grid-cols-1 lg:gap-14">
           <div className={leftCardClass[variant]}>
             <h2 className="text-2xl font-bold text-ink sm:text-3xl">
               {contactSectionCopy.title}
@@ -89,10 +88,12 @@ export const DoctorContactSection = ({ variant }: Props) => {
               <span className="font-medium text-ink">Horário: </span>
               {clinicContact.hoursWeekdays}
             </p>
-            <p className="mt-2 text-sm text-muted">{clinicContact.weekendNote}</p>
+            <p className="mt-2 text-sm text-muted">
+              {clinicContact.weekendNote}
+            </p>
           </div>
 
-          <div className={rightCardClass[variant]}>
+          {/* <div className={rightCardClass[variant]}>
             <h3 className="text-xl font-bold text-ink sm:text-2xl">
               {teamTeaserCopy.title}
             </h3>
@@ -128,7 +129,7 @@ export const DoctorContactSection = ({ variant }: Props) => {
                 {clinicContact.phoneDisplay}
               </a>
             </p>
-          </div>
+          </div> */}
         </div>
       </Container>
     </section>

@@ -3,6 +3,7 @@
 export const clinicContact = {
   phoneDisplay: "(69) 3215-4275",
   phoneHref: "tel:+556932154275",
+  whatsappHref: "https://wa.me/+556932154275",
   instagramHref: "https://www.instagram.com/clinicatotalvida/",
   addressLines: [
     "Rua Uruguai, nº 2486, bairro Embratel",

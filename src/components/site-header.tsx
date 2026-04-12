@@ -84,7 +84,7 @@ export const SiteHeader = () => {
             priority
           />
         </Link>
-        {/* 
+
         <nav
           aria-label="Principal"
           className="hidden min-w-0 flex-1 justify-center lg:flex"
@@ -105,14 +105,14 @@ export const SiteHeader = () => {
               );
             })}
           </ul>
-        </nav> */}
+        </nav>
 
         <div className="hidden shrink-0 lg:block">
           <ScheduleConsultationLink />
         </div>
 
         <div className="ml-auto lg:hidden">
-          {/* <IconButton
+          <IconButton
             type="button"
             color="inherit"
             aria-label="Abrir menu"
@@ -123,8 +123,8 @@ export const SiteHeader = () => {
             className="text-ink"
           >
             <MenuIcon />
-          </IconButton> */}
-          <ScheduleConsultationLink variant="inline" />
+          </IconButton>
+          {/* <ScheduleConsultationLink variant="inline" /> */}
         </div>
       </Container>
 

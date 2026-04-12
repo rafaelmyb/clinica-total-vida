@@ -11,7 +11,7 @@ import { Container } from "@/components/container";
 
 const spotlightImages = [
   siteImages.doutorPotthyer.doutorPotthyer,
-  siteImages.doutoraQuiele.doutoraQuiele,
+  siteImages.doutoraQuiele.quieleClinica,
 ] as const;
 
 export const HomeValuesSection = () => {

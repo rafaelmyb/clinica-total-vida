@@ -21,5 +21,13 @@ export const siteImages = {
     photo6: "/images/doutora-quiele-vieira/6.png",
     photo7: "/images/doutora-quiele-vieira/7.png",
     doutoraQuiele: "/images/doutora-quiele-vieira/doutora-quiele.png",
+    quieleClinica: "/images/doutora-quiele-vieira/quiele-clinica.png",
+    heroImage: "/images/doutora-quiele-vieira/hero-image.png",
+    rinoplastia: "/images/doutora-quiele-vieira/rinoplastia.png",
+    preenchimentoLabial:
+      "/images/doutora-quiele-vieira/preenchimento-labial.png",
+    botox: "/images/doutora-quiele-vieira/botox.png",
+    mento: "/images/doutora-quiele-vieira/mento.png",
+    fiosPDO: "/images/doutora-quiele-vieira/fios-pdo.png",
   },
 } as const;
