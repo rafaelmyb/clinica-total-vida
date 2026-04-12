@@ -1,15 +1,30 @@
+"use client";
+
+import { motion, useReducedMotion } from "framer-motion";
 import { clinicContact, contactSectionCopy } from "@/lib/clinica-content";
+import {
+  sectionFadeTransition,
+  viewportOnceTight,
+} from "@/lib/motion-presets";
 import { Container } from "@/components/container";
 
 const WHATSAPP_URL = "https://wa.me/+556932154275";
 const WHATSAPP_DISPLAY = "(69) 3215-4275";
 
 export const HomeContactSection = () => {
+  const reduce = useReducedMotion();
+
   return (
     <section className="border-t border-brand/15 bg-gradient-to-b from-brand-soft/55 via-brand-soft/25 to-canvas py-14 sm:py-16 lg:py-20">
       <Container>
         <div className="mx-auto w-full gap-10">
-          <div className="rounded-[2rem] border border-black/6 bg-white p-8 shadow-[var(--shadow-card)] sm:p-10">
+          <motion.div
+            className="rounded-[2rem] border border-black/6 bg-white p-8 shadow-[var(--shadow-card)] sm:p-10"
+            initial={reduce ? false : { opacity: 0, y: 20 }}
+            whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+            viewport={viewportOnceTight}
+            transition={sectionFadeTransition}
+          >
             <h2 className="text-2xl font-bold text-ink sm:text-3xl">
               {contactSectionCopy.title}
             </h2>
@@ -53,7 +68,7 @@ export const HomeContactSection = () => {
             <p className="mt-2 text-sm text-muted">
               {clinicContact.weekendNote}
             </p>
-          </div>
+          </motion.div>
 
           {/* <div className="flex flex-col justify-center rounded-[2rem] border border-brand/15 bg-white/80 p-8 sm:p-10">
             <h3 className="text-xl font-bold text-ink sm:text-2xl">

@@ -1,7 +1,12 @@
 "use client";
 
+import { motion, useReducedMotion } from "framer-motion";
 import { useState } from "react";
 import { journeySteps } from "@/lib/clinica-content";
+import {
+  sectionFadeTransition,
+  viewportOnceTight,
+} from "@/lib/motion-presets";
 import { Container } from "@/components/container";
 
 const accentRing: Record<(typeof journeySteps)[number]["accent"], string> = {
@@ -18,6 +23,7 @@ const lineColor: Record<(typeof journeySteps)[number]["accent"], string> = {
 
 export const HomeJourneySection = () => {
   const [active, setActive] = useState<string>(journeySteps[0].id);
+  const reduce = useReducedMotion();
 
   const current = journeySteps.find((s) => s.id === active) ?? journeySteps[0];
 
@@ -25,20 +31,44 @@ export const HomeJourneySection = () => {
     <section className="bg-transparent py-14 sm:py-16 lg:py-20">
       <Container>
         <div className="mx-auto max-w-3xl text-center">
-          <p className="text-xs font-semibold uppercase tracking-widest text-brand-muted">
+          <motion.p
+            className="text-xs font-semibold uppercase tracking-widest text-brand-muted"
+            initial={reduce ? false : { opacity: 0, y: 16 }}
+            whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+            viewport={viewportOnceTight}
+            transition={sectionFadeTransition}
+          >
             Como organizamos o cuidado
-          </p>
-          <h2 className="mt-3 text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+          </motion.p>
+          <motion.h2
+            className="mt-3 text-3xl font-bold tracking-tight text-ink sm:text-4xl"
+            initial={reduce ? false : { opacity: 0, y: 16 }}
+            whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+            viewport={viewportOnceTight}
+            transition={{ ...sectionFadeTransition, delay: 0.08 }}
+          >
             Do primeiro contato ao acompanhamento
-          </h2>
-          <p className="mt-4 text-base leading-relaxed text-muted sm:text-lg">
+          </motion.h2>
+          <motion.p
+            className="mt-4 text-base leading-relaxed text-muted sm:text-lg"
+            initial={reduce ? false : { opacity: 0, y: 16 }}
+            whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+            viewport={viewportOnceTight}
+            transition={{ ...sectionFadeTransition, delay: 0.16 }}
+          >
             Nada de promessas automáticas: o que descrevemos aqui é o fluxo
             humano e profissional que orienta a experiência na Clínica Total
             Vida — para que você saiba o que esperar em cada etapa.
-          </p>
+          </motion.p>
         </div>
 
-        <div className="mx-auto mt-12 max-w-6xl rounded-[2rem] border border-black/[0.06] bg-white p-6 shadow-[var(--shadow-card)] sm:p-10 lg:p-12">
+        <motion.div
+          className="mx-auto mt-12 max-w-6xl rounded-[2rem] border border-black/[0.06] bg-white p-6 shadow-[var(--shadow-card)] sm:p-10 lg:p-12"
+          initial={reduce ? false : { opacity: 0, y: 20 }}
+          whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+          viewport={viewportOnceTight}
+          transition={{ ...sectionFadeTransition, delay: 0.06 }}
+        >
           <div className="mb-10 flex flex-wrap items-center justify-center gap-2 lg:flex-nowrap">
             {journeySteps.map((step, i) => {
               const isOn = step.id === active;
@@ -129,7 +159,7 @@ export const HomeJourneySection = () => {
               consulta — e a construir confiança com a equipe ao longo do tempo.
             </span>
           </p>
-        </div>
+        </motion.div>
       </Container>
     </section>
   );

@@ -2,7 +2,12 @@
 
 import Image from "next/image";
 import InstagramIcon from "@mui/icons-material/Instagram";
+import { motion, useReducedMotion } from "framer-motion";
 import { clinicContact, heroCopy } from "@/lib/clinica-content";
+import {
+  heroFadeUpVariants,
+  reducedMotionHeroVariants,
+} from "@/lib/motion-presets";
 import { siteImages } from "@/lib/site-images";
 import { Container } from "@/components/container";
 import { ScheduleConsultationLink } from "@/components/schedule-consultation-link";
@@ -13,30 +18,56 @@ const overlaySweep =
 
 export const HomeHero = () => {
   const isMobile = useMediaQuery("(max-width: 640px)");
+  const reduce = useReducedMotion();
+  const variants = reduce ? reducedMotionHeroVariants : heroFadeUpVariants;
 
   return (
     <section className="flex min-h-[100dvh] items-center overflow-hidden bg-transparent pb-16 pt-[calc(var(--site-header-height)+2.5rem)] sm:pb-20 sm:pt-[calc(var(--site-header-height)+3.5rem)]">
       <Container className="max-w-full sm:!px-16">
         <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1.05fr)_auto]">
           <div className="relative z-10 flex flex-col items-center lg:items-start">
-            <p className="inline-flex items-center gap-2 rounded-full border border-brand/15 bg-white/80 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-brand shadow-sm backdrop-blur-sm sm:text-sm">
+            <motion.p
+              custom={1}
+              initial="hidden"
+              animate="show"
+              variants={variants}
+              className="inline-flex items-center gap-2 rounded-full border border-brand/15 bg-white/80 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-brand shadow-sm backdrop-blur-sm sm:text-sm"
+            >
               <span className="text-base leading-none" aria-hidden>
                 ✦
               </span>
               {heroCopy.badge}
-            </p>
+            </motion.p>
 
-            <h1 className="mt-6 text-center text-4xl font-bold leading-[1.12] tracking-tight text-ink sm:text-5xl lg:text-[3.25rem] lg:text-left">
+            <motion.h1
+              custom={2}
+              initial="hidden"
+              animate="show"
+              variants={variants}
+              className="mt-6 text-center text-4xl font-bold leading-[1.12] tracking-tight text-ink sm:text-5xl lg:text-[3.25rem] lg:text-left"
+            >
               {heroCopy.titleBefore}
               <span className="text-brand">{heroCopy.titleHighlight}</span>
-            </h1>
+            </motion.h1>
 
-            <p className="mt-6 max-w-xl text-center text-base leading-relaxed text-muted sm:text-lg lg:text-left">
+            <motion.p
+              custom={3}
+              initial="hidden"
+              animate="show"
+              variants={variants}
+              className="mt-6 max-w-xl text-center text-base leading-relaxed text-muted sm:text-lg lg:text-left"
+            >
               {heroCopy.lead}
-            </p>
+            </motion.p>
 
             {isMobile ? (
-              <div className="flex w-full min-w-0 justify-center overflow-x-auto bg-transparent xl:!pr-16 pt-8">
+              <motion.div
+                custom={4}
+                initial="hidden"
+                animate="show"
+                variants={variants}
+                className="flex w-full min-w-0 justify-center overflow-x-auto bg-transparent pt-8 xl:!pr-16"
+              >
                 <Image
                   src={siteImages.clinica.logo}
                   alt={siteImages.clinica.altLogo}
@@ -44,12 +75,18 @@ export const HomeHero = () => {
                   height={709}
                   priority
                   unoptimized
-                  className="h-auto sm:w-[560px] w-[320px] max-w-none shrink-0 bg-transparent object-contain"
+                  className="h-auto w-[320px] max-w-none shrink-0 bg-transparent object-contain sm:w-[560px]"
                 />
-              </div>
+              </motion.div>
             ) : null}
 
-            <div className="mt-8 flex flex-row flex-wrap items-center justify-center gap-3 lg:justify-start">
+            <motion.div
+              custom={isMobile ? 5 : 4}
+              initial="hidden"
+              animate="show"
+              variants={variants}
+              className="mt-8 flex flex-row flex-wrap items-center justify-center gap-3 lg:justify-start"
+            >
               <ScheduleConsultationLink variant="hero" className="shrink-0" />
               <a
                 href={clinicContact.instagramHref}
@@ -70,9 +107,15 @@ export const HomeHero = () => {
                   {heroCopy.instagramCta}
                 </span>
               </a>
-            </div>
+            </motion.div>
 
-            <ul className="mt-8 flex max-w-full flex-nowrap justify-center gap-2 lg:justify-start sm:flex-wrap sm:gap-2.5">
+            <motion.ul
+              custom={isMobile ? 6 : 5}
+              initial="hidden"
+              animate="show"
+              variants={variants}
+              className="mt-8 flex max-w-full flex-nowrap justify-center gap-2 lg:justify-start sm:flex-wrap sm:gap-2.5"
+            >
               {heroCopy.pills.map((pill) => (
                 <li key={pill.label} className="min-w-0 flex-1 sm:flex-initial">
                   <div className="group flex w-full min-w-full max-w-full flex-col items-start rounded-xl border border-brand/10 bg-white/90 px-2.5 py-1.5 text-left shadow-[--shadow-card] transition-transform duration-200 hover:-translate-y-0.5 hover:border-brand/25 hover:shadow-[--shadow-card-hover] sm:w-auto sm:rounded-2xl sm:px-4 sm:py-2.5">
@@ -85,15 +128,27 @@ export const HomeHero = () => {
                   </div>
                 </li>
               ))}
-            </ul>
+            </motion.ul>
 
-            <p className="mt-8 text-xs leading-relaxed text-muted sm:text-sm">
+            <motion.p
+              custom={isMobile ? 7 : 6}
+              initial="hidden"
+              animate="show"
+              variants={variants}
+              className="mt-8 text-xs leading-relaxed text-muted sm:text-sm"
+            >
               {heroCopy.footnote}
-            </p>
+            </motion.p>
           </div>
 
           {!isMobile ? (
-            <div className="flex w-full min-w-0 justify-center overflow-x-auto bg-transparent xl:!pr-16">
+            <motion.div
+              custom={0}
+              initial="hidden"
+              animate="show"
+              variants={variants}
+              className="flex w-full min-w-0 justify-center overflow-x-auto bg-transparent xl:!pr-16"
+            >
               <Image
                 src={siteImages.clinica.logo}
                 alt={siteImages.clinica.altLogo}
@@ -101,9 +156,9 @@ export const HomeHero = () => {
                 height={709}
                 priority
                 unoptimized
-                className="h-auto sm:w-[560px] w-[320px] max-w-none shrink-0 bg-transparent object-contain"
+                className="h-auto w-[320px] max-w-none shrink-0 bg-transparent object-contain sm:w-[560px]"
               />
-            </div>
+            </motion.div>
           ) : null}
         </div>
       </Container>

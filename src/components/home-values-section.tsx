@@ -1,11 +1,16 @@
 "use client";
 
 import Image from "next/image";
+import { motion, useReducedMotion } from "framer-motion";
 import {
   homeTeamSectionIntro,
   homeTeamSpotlightImageAlt,
   homeTeamSpotlights,
 } from "@/lib/clinica-content";
+import {
+  sectionFadeTransition,
+  viewportOnceTight,
+} from "@/lib/motion-presets";
 import { siteImages } from "@/lib/site-images";
 import { Container } from "@/components/container";
 
@@ -15,6 +20,8 @@ const spotlightImages = [
 ] as const;
 
 export const HomeValuesSection = () => {
+  const reduce = useReducedMotion();
+
   return (
     <section className="relative overflow-hidden border-b border-brand/8 bg-gradient-to-br from-[#fff9f4] via-white to-brand-soft/25 py-14 sm:py-16 lg:py-20">
       <div className="pointer-events-none absolute -left-32 top-20 h-72 w-72 rounded-full bg-brand-soft/50 blur-3xl" />
@@ -22,21 +29,41 @@ export const HomeValuesSection = () => {
       <Container>
         <div className="flex flex-col gap-12 lg:items-center lg:gap-16">
           <div className="mx-auto max-w-3xl text-center">
-            <p className="text-xs font-semibold uppercase tracking-widest text-brand-muted">
+            <motion.p
+              className="text-xs font-semibold uppercase tracking-widest text-brand-muted"
+              initial={reduce ? false : { opacity: 0, y: 16 }}
+              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+              viewport={viewportOnceTight}
+              transition={sectionFadeTransition}
+            >
               {homeTeamSectionIntro.eyebrow}
-            </p>
-            <h3 className="mt-3 text-2xl font-bold tracking-tight text-ink sm:text-3xl">
+            </motion.p>
+            <motion.h3
+              className="mt-3 text-2xl font-bold tracking-tight text-ink sm:text-3xl"
+              initial={reduce ? false : { opacity: 0, y: 16 }}
+              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+              viewport={viewportOnceTight}
+              transition={{ ...sectionFadeTransition, delay: 0.08 }}
+            >
               {homeTeamSectionIntro.title}
-            </h3>
-            <p className="mt-4 text-sm leading-relaxed text-muted sm:text-base">
+            </motion.h3>
+            <motion.p
+              className="mt-4 text-sm leading-relaxed text-muted sm:text-base"
+              initial={reduce ? false : { opacity: 0, y: 16 }}
+              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+              viewport={viewportOnceTight}
+              transition={{ ...sectionFadeTransition, delay: 0.16 }}
+            >
               {homeTeamSectionIntro.lead}
-            </p>
+            </motion.p>
           </div>
 
           <div className="flex w-full flex-col gap-12 lg:gap-16">
             {homeTeamSpotlights.map((spot, i) => {
               const imageSrc = spotlightImages[i];
               const imageOnRight = i % 2 === 1;
+              const imageX = reduce ? 0 : imageOnRight ? 14 : -14;
+              const textX = reduce ? 0 : imageOnRight ? -14 : 14;
               return (
                 <article
                   key={i}
@@ -49,8 +76,11 @@ export const HomeValuesSection = () => {
                     aria-hidden
                   />
 
-                  <div
-                    // href={spot.href}
+                  <motion.div
+                    initial={reduce ? false : { opacity: 0, x: imageX }}
+                    whileInView={reduce ? undefined : { opacity: 1, x: 0 }}
+                    viewport={viewportOnceTight}
+                    transition={{ ...sectionFadeTransition, delay: 0.05 }}
                     className={`relative mx-auto w-full max-w-[min(100%,380px)] shrink-0 overflow-hidden rounded-4xl border border-black/8 bg-white shadow-(--shadow-card) ring-0 transition-all duration-500 hover:border-brand/25 hover:shadow-(--shadow-card-hover) focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand lg:mx-0 ${
                       imageOnRight ? "lg:origin-right" : "lg:origin-left"
                     }`}
@@ -72,11 +102,14 @@ export const HomeValuesSection = () => {
                     <span className="sr-only">
                       Abrir página com mais informações sobre a equipe
                     </span>
-                  </div>
+                  </motion.div>
 
-                  <div
-                    className="home-team-value-card relative flex min-w-0 flex-1 animate-fade-up flex-col justify-center overflow-hidden rounded-3xl border border-black/[0.07] p-6 shadow-sm sm:p-8"
-                    style={i === 1 ? { animationDelay: "90ms" } : undefined}
+                  <motion.div
+                    initial={reduce ? false : { opacity: 0, x: textX }}
+                    whileInView={reduce ? undefined : { opacity: 1, x: 0 }}
+                    viewport={viewportOnceTight}
+                    transition={{ ...sectionFadeTransition, delay: 0.12 }}
+                    className="home-team-value-card relative flex min-w-0 flex-1 flex-col justify-center overflow-hidden rounded-3xl border border-black/[0.07] p-6 shadow-sm sm:p-8"
                   >
                     <div
                       className="mb-4 h-1 w-12 rounded-full bg-gradient-to-r from-brand to-brand-gold"
@@ -100,7 +133,7 @@ export const HomeValuesSection = () => {
                         →
                       </span>
                     </Link> */}
-                  </div>
+                  </motion.div>
                 </article>
               );
             })}

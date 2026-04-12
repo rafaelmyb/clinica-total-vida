@@ -3,6 +3,10 @@
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { Container } from "@/components/container";
+import {
+  heroFadeUpVariants,
+  reducedMotionHeroVariants,
+} from "@/lib/motion-presets";
 import { clinicContact } from "@/lib/clinica-content";
 import { siteImages } from "@/lib/site-images";
 import { QuieleHeroFlashStars } from "@/modules/quiele/componentes/quiele-hero-flash-stars";
@@ -11,24 +15,6 @@ import {
   quieleHero,
   quieleInfoCard,
 } from "@/modules/quiele/content/quiele-page-content";
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
-  show: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: 0.08 * i,
-      duration: 0.5,
-      ease: [0.22, 1, 0.36, 1] as const,
-    },
-  }),
-};
-
-const reducedMotionVariants = {
-  hidden: { opacity: 1, y: 0 },
-  show: { opacity: 1, y: 0 },
-};
 
 export const QuieleHeroInfoSection = () => {
   const reduce = useReducedMotion();
@@ -43,7 +29,7 @@ export const QuieleHeroInfoSection = () => {
                 custom={1}
                 initial="hidden"
                 animate="show"
-                variants={reduce ? reducedMotionVariants : fadeUp}
+                variants={reduce ? reducedMotionHeroVariants : heroFadeUpVariants}
                 className="inline-flex items-center gap-2 rounded-full border border-dra-taupe-deep/20 bg-white/90 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-dra-taupe-deep shadow-sm backdrop-blur-sm sm:text-sm"
               >
                 <span
@@ -58,7 +44,7 @@ export const QuieleHeroInfoSection = () => {
                 custom={2}
                 initial="hidden"
                 animate="show"
-                variants={reduce ? reducedMotionVariants : fadeUp}
+                variants={reduce ? reducedMotionHeroVariants : heroFadeUpVariants}
                 className="mt-6 font-serif text-4xl font-semibold leading-tight text-dra-taupe-deep sm:text-5xl lg:text-[2.75rem]"
               >
                 {quieleHero.title}
@@ -67,7 +53,7 @@ export const QuieleHeroInfoSection = () => {
                 custom={3}
                 initial="hidden"
                 animate="show"
-                variants={reduce ? reducedMotionVariants : fadeUp}
+                variants={reduce ? reducedMotionHeroVariants : heroFadeUpVariants}
                 className="mt-5 max-w-xl text-base leading-relaxed text-muted sm:text-lg"
               >
                 {quieleHero.description}
@@ -76,7 +62,7 @@ export const QuieleHeroInfoSection = () => {
                 custom={4}
                 initial="hidden"
                 animate="show"
-                variants={reduce ? reducedMotionVariants : fadeUp}
+                variants={reduce ? reducedMotionHeroVariants : heroFadeUpVariants}
                 className="mt-8 flex flex-wrap items-center gap-3"
               >
                 <PillButton
@@ -93,7 +79,7 @@ export const QuieleHeroInfoSection = () => {
                 custom={0}
                 initial="hidden"
                 animate="show"
-                variants={reduce ? reducedMotionVariants : fadeUp}
+                variants={reduce ? reducedMotionHeroVariants : heroFadeUpVariants}
               >
                 <Image
                   src={siteImages.doutoraQuiele.heroImage}
