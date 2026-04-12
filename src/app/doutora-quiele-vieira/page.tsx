@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { DoutoraQuieleOpeningGroup } from "@/components/doutora-quiele-opening-group";
-import { DoctorContactSection } from "@/components/doctor-contact-section";
-import { QuieleAdvantagesSection } from "@/modules/quiele/sections/quiele-advantages-section";
-import { QuieleFeatureSplitSection } from "@/modules/quiele/sections/quiele-feature-split-section";
+import { heroCopy } from "@/lib/clinica-content";
 import { QuieleHeroInfoSection } from "@/modules/quiele/sections/quiele-hero-info-section";
 import { QuieleHistoryTimelineSection } from "@/modules/quiele/sections/quiele-history-timeline-section";
 import { QuieleMarqueeMissionSection } from "@/modules/quiele/sections/quiele-marquee-mission-section";
@@ -22,7 +20,10 @@ export default function DoutoraQuielePage() {
   return (
     <>
       <DoutoraQuieleOpeningGroup>
-        <QuieleHeroInfoSection />
+        <QuieleHeroInfoSection
+          instagramHref="https://www.instagram.com/draquielevieira/"
+          instagramAriaLabel={`${heroCopy.instagramCta} — Instagram da Dra. Quiele Vieira (@draquielevieira)`}
+        />
       </DoutoraQuieleOpeningGroup>
 
       <QuieleMarqueeMissionSection />

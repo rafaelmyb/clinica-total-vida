@@ -29,7 +29,13 @@ export const QuieleFeatureSplitSection = () => {
               {quieleFeatureSplit.sub}
             </p>
             <div className="mt-8">
-              <PillButton href={clinicContact.phoneHref}>{quieleFeatureSplit.cta}</PillButton>
+              <PillButton
+                href={clinicContact.whatsappHref}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {quieleFeatureSplit.cta}
+              </PillButton>
             </div>
             <p className="mt-6 text-xs text-muted">{quieleDisclaimer}</p>
 

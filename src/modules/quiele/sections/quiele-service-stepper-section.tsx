@@ -148,7 +148,11 @@ export const QuieleServiceStepperSection = () => {
             {quieleStepper.description}
           </p>
           <div className="lg:shrink-0">
-            <PillButton href={clinicContact.phoneHref}>
+            <PillButton
+              href={clinicContact.whatsappHref}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               {quieleStepper.cta}
             </PillButton>
           </div>

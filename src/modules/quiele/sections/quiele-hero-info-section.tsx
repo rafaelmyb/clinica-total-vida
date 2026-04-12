@@ -1,5 +1,6 @@
 "use client";
 
+import InstagramIcon from "@mui/icons-material/Instagram";
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { Container } from "@/components/container";
@@ -7,29 +8,48 @@ import {
   heroFadeUpVariants,
   reducedMotionHeroVariants,
 } from "@/lib/motion-presets";
-import { clinicContact } from "@/lib/clinica-content";
+import { ScheduleConsultationLink } from "@/components/schedule-consultation-link";
+import { clinicContact, heroCopy } from "@/lib/clinica-content";
 import { siteImages } from "@/lib/site-images";
 import { QuieleHeroFlashStars } from "@/modules/quiele/componentes/quiele-hero-flash-stars";
-import { PillButton } from "@/modules/quiele/componentes/pill-button";
 import {
   quieleHero,
   quieleInfoCard,
 } from "@/modules/quiele/content/quiele-page-content";
 
-export const QuieleHeroInfoSection = () => {
+const overlaySweep =
+  "pointer-events-none absolute inset-0 origin-left scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100";
+
+export type QuieleHeroInfoSectionProps = {
+  instagramHref?: string;
+  instagramAriaLabel?: string;
+};
+
+export const QuieleHeroInfoSection = ({
+  instagramHref = clinicContact.instagramHref,
+  instagramAriaLabel,
+}: QuieleHeroInfoSectionProps = {}) => {
   const reduce = useReducedMotion();
+
+  const instagramButtonAriaLabel =
+    instagramAriaLabel ??
+    (instagramHref === clinicContact.instagramHref
+      ? `${heroCopy.instagramCta} — Instagram @clinicatotalvida`
+      : `${heroCopy.instagramCta} — Instagram`);
 
   return (
     <div className="relative pt-[calc(var(--site-header-height)+2.5rem)] sm:pt-[calc(var(--site-header-height)+3.5rem)] -mb-4">
       <Container>
         <div className="relative isolate">
-          <div className="relative z-10 grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
-            <div className="lg:min-w-xl lg:-mt-20">
+          <div className="relative z-10 grid items-center gap-4 lg:grid-cols-2 lg:gap-14">
+            <div className="flex flex-col items-center text-center lg:min-w-xl lg:-mt-20 lg:items-start lg:text-left">
               <motion.p
                 custom={1}
                 initial="hidden"
                 animate="show"
-                variants={reduce ? reducedMotionHeroVariants : heroFadeUpVariants}
+                variants={
+                  reduce ? reducedMotionHeroVariants : heroFadeUpVariants
+                }
                 className="inline-flex items-center gap-2 rounded-full border border-dra-taupe-deep/20 bg-white/90 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-dra-taupe-deep shadow-sm backdrop-blur-sm sm:text-sm"
               >
                 <span
@@ -44,7 +64,9 @@ export const QuieleHeroInfoSection = () => {
                 custom={2}
                 initial="hidden"
                 animate="show"
-                variants={reduce ? reducedMotionHeroVariants : heroFadeUpVariants}
+                variants={
+                  reduce ? reducedMotionHeroVariants : heroFadeUpVariants
+                }
                 className="mt-6 font-serif text-4xl font-semibold leading-tight text-dra-taupe-deep sm:text-5xl lg:text-[2.75rem]"
               >
                 {quieleHero.title}
@@ -53,8 +75,10 @@ export const QuieleHeroInfoSection = () => {
                 custom={3}
                 initial="hidden"
                 animate="show"
-                variants={reduce ? reducedMotionHeroVariants : heroFadeUpVariants}
-                className="mt-5 max-w-xl text-base leading-relaxed text-muted sm:text-lg"
+                variants={
+                  reduce ? reducedMotionHeroVariants : heroFadeUpVariants
+                }
+                className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-muted sm:text-lg lg:mx-0"
               >
                 {quieleHero.description}
               </motion.p>
@@ -62,32 +86,50 @@ export const QuieleHeroInfoSection = () => {
                 custom={4}
                 initial="hidden"
                 animate="show"
-                variants={reduce ? reducedMotionHeroVariants : heroFadeUpVariants}
-                className="mt-8 flex flex-wrap items-center gap-3"
+                variants={
+                  reduce ? reducedMotionHeroVariants : heroFadeUpVariants
+                }
+                className="mt-8 flex flex-wrap items-center justify-center gap-3 lg:justify-start"
               >
-                <PillButton
-                  href={clinicContact.whatsappHref}
+                <ScheduleConsultationLink
+                  variant="quiele"
+                  className="shrink-0"
+                />
+                <a
+                  href={instagramHref}
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="group relative inline-flex shrink-0 items-center justify-center overflow-hidden rounded-full border border-dra-taupe-deep/20 bg-white/80 px-4 py-2.5 text-xs font-semibold uppercase tracking-wider shadow-sm backdrop-blur-sm transition-[border-color] duration-300 ease-out hover:border-dra-taupe-deep sm:text-sm"
+                  aria-label={instagramButtonAriaLabel}
                 >
-                  {quieleHero.ctaPrimary}
-                </PillButton>
+                  <span
+                    className={`${overlaySweep} bg-dra-taupe-deep`}
+                    aria-hidden
+                  />
+                  <span className="relative z-10 flex items-center gap-2 text-dra-taupe-deep transition-colors duration-300 ease-out group-hover:text-canvas">
+                    <InstagramIcon className="h-5 w-5 shrink-0" aria-hidden />
+                    {heroCopy.instagramCta}
+                  </span>
+                </a>
               </motion.div>
             </div>
-            <div className="relative flex min-h-[280px] items-center justify-center lg:min-h-[420px]">
+            <div className="relative flex min-h-[300px] items-center justify-center overflow-visible sm:min-h-[280px] lg:min-h-[420px]">
               <motion.div
                 custom={0}
                 initial="hidden"
                 animate="show"
-                variants={reduce ? reducedMotionHeroVariants : heroFadeUpVariants}
+                variants={
+                  reduce ? reducedMotionHeroVariants : heroFadeUpVariants
+                }
+                className="w-full max-w-[min(100%,640px)] sm:max-w-[540px] lg:max-w-none"
               >
                 <Image
                   src={siteImages.doutoraQuiele.heroImage}
                   alt={siteImages.doutoraQuiele.altLogo}
                   width={540}
                   height={675}
-                  className="h-auto w-full object-contain"
-                  sizes="(max-width: 1024px) 60vw, 540px"
+                  className="h-auto w-full origin-center scale-[1.08] object-contain sm:scale-100"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 60vw, 540px"
                   priority
                 />
               </motion.div>

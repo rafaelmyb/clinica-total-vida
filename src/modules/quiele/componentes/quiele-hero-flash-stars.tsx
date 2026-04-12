@@ -3,6 +3,7 @@ import { memo, type CSSProperties } from "react";
 /**
  * Paparazzi stars — kept toward corners/edges (avoid ~35–65% “content” band).
  * % = anchor center; larger `size` = easier to see.
+ * `hasOnMobile: false` → `hidden md:block` (omit on small viewports).
  */
 const cameraFlashes = [
   {
@@ -13,6 +14,7 @@ const cameraFlashes = [
     floatDelay: 0,
     flashDuration: 3.4,
     flashDelay: 0,
+    hasOnMobile: true,
   },
   {
     top: "2%",
@@ -22,6 +24,7 @@ const cameraFlashes = [
     floatDelay: 1.1,
     flashDuration: 3.8,
     flashDelay: 0.2,
+    hasOnMobile: false,
   },
   {
     top: "34%",
@@ -31,6 +34,7 @@ const cameraFlashes = [
     floatDelay: 0.3,
     flashDuration: 3.1,
     flashDelay: 0.9,
+    hasOnMobile: true,
   },
   {
     top: "70%",
@@ -40,6 +44,7 @@ const cameraFlashes = [
     floatDelay: 1.4,
     flashDuration: 3.6,
     flashDelay: 0.1,
+    hasOnMobile: false,
   },
   {
     top: "26%",
@@ -49,6 +54,7 @@ const cameraFlashes = [
     floatDelay: 0.8,
     flashDuration: 2.7,
     flashDelay: 1.2,
+    hasOnMobile: true,
   },
   {
     top: "70%",
@@ -58,6 +64,7 @@ const cameraFlashes = [
     floatDelay: 0.2,
     flashDuration: 3.2,
     flashDelay: 0.6,
+    hasOnMobile: true,
   },
   {
     top: "91%",
@@ -67,6 +74,7 @@ const cameraFlashes = [
     floatDelay: 1.7,
     flashDuration: 3.5,
     flashDelay: 0.3,
+    hasOnMobile: true,
   },
 ] as const;
 
@@ -125,7 +133,12 @@ export const QuieleHeroFlashStars = memo(() => {
         return (
           <div
             key={`flash-${i}`}
-            className="absolute -translate-x-1/2 -translate-y-1/2 transform-gpu"
+            className={[
+              "absolute -translate-x-1/2 -translate-y-1/2 transform-gpu",
+              f.hasOnMobile ? "" : "hidden md:block",
+            ]
+              .filter(Boolean)
+              .join(" ")}
             style={{ top: f.top, left: f.left }}
           >
             <div

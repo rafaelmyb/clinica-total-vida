@@ -15,7 +15,10 @@ export const HomeContactSection = () => {
   const reduce = useReducedMotion();
 
   return (
-    <section className="border-t border-brand/15 bg-gradient-to-b from-brand-soft/55 via-brand-soft/25 to-canvas py-14 sm:py-16 lg:py-20">
+    <section
+      id="contato"
+      className="border-t border-brand/15 bg-gradient-to-b from-brand-soft/55 via-brand-soft/25 to-canvas py-14 sm:py-16 lg:py-20"
+    >
       <Container>
         <div className="mx-auto w-full gap-10">
           <motion.div

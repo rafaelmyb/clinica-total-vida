@@ -154,7 +154,7 @@ export const heroCopy = {
   ],
   footnote:
     "Informações neste site são institucionais; o plano terapêutico ou médico é sempre definido em consulta.",
-  instagramCta: "Conheça-nos",
+  instagramCta: "Conhecer",
 } as const;
 
 export const integratedCopy = {

@@ -1,8 +1,8 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import Link from "next/link";
 import { Container } from "@/components/container";
+import { clinicContact } from "@/lib/clinica-content";
 import { siteImages } from "@/lib/site-images";
 import { ServiceCard } from "@/modules/quiele/componentes/service-card";
 import { quieleServicesGrid } from "@/modules/quiele/content/quiele-page-content";
@@ -49,12 +49,6 @@ export const QuieleServicesGridSection = () => {
             <p className="text-xs font-semibold uppercase tracking-widest text-muted">
               {quieleServicesGrid.label}
             </p>
-            <Link
-              href={quieleServicesGrid.ctaSeeAllHref}
-              className="inline-flex items-center justify-center rounded-full bg-dra-rose-gold px-5 py-2.5 text-sm font-semibold text-canvas transition-colors hover:bg-dra-taupe-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dra-taupe-deep"
-            >
-              {quieleServicesGrid.ctaSeeAll}
-            </Link>
           </div>
         </div>
 
@@ -74,7 +68,9 @@ export const QuieleServicesGridSection = () => {
                   description={item.description}
                   imageSrc={imageByKey[item.imageKey]}
                   imageAlt={item.title}
-                  href="#contato"
+                  href={clinicContact.whatsappHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 />
               </motion.div>
             ))}

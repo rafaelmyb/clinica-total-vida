@@ -13,7 +13,7 @@ export const Marquee = ({ items, className = "" }: Props) => {
   const full = `${segment}${PHRASE_GAP}`.repeat(4);
 
   const trackClass =
-    "whitespace-nowrap font-semibold uppercase leading-none tracking-[-0.02em] text-[clamp(1.85rem,5vw,4.5rem)]";
+    "whitespace-nowrap font-semibold uppercase leading-none tracking-[-0.02em] text-[clamp(2.25rem,7.5vw,4.5rem)]";
 
   return (
     <div

@@ -1,6 +1,5 @@
 "use client";
 
-import NorthEastIcon from "@mui/icons-material/NorthEast";
 import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
@@ -11,6 +10,8 @@ type Props = {
   imageSrc: string | StaticImageData;
   imageAlt: string;
   href?: string;
+  target?: string;
+  rel?: string;
   className?: string;
 };
 
@@ -20,6 +21,8 @@ export const ServiceCard = ({
   imageSrc,
   imageAlt,
   href = "#contato",
+  target,
+  rel,
   className = "",
 }: Props) => {
   const reduce = useReducedMotion();
@@ -28,6 +31,8 @@ export const ServiceCard = ({
     <article className={`group flex h-full flex-col ${className}`}>
       <Link
         href={href}
+        target={target}
+        rel={rel}
         className="flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-dra-taupe-deep/10 transition-[box-shadow,ring-color] duration-300 hover:shadow-md hover:ring-dra-taupe-deep/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dra-taupe-deep focus-visible:ring-offset-2 focus-visible:ring-offset-white"
       >
         <div className="relative aspect-4/3 w-full overflow-hidden">

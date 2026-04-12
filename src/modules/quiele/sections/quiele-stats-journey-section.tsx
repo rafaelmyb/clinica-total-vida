@@ -59,13 +59,11 @@ export const QuieleStatsJourneySection = () => {
             </div>
           </div>
 
-          <div className="flex min-h-0 flex-col lg:min-h-[520px]">
+          <div className="flex min-w-0 flex-col">
             <p className="mb-5 text-center text-xs font-semibold uppercase tracking-[0.2em] text-dra-taupe-deep sm:mb-6 sm:text-left">
               Jornada da beleza
             </p>
-            <div className="flex min-h-0 flex-1 items-center">
-              <JourneyGraphic className="w-full flex-1" steps={quieleJourneySteps} />
-            </div>
+            <JourneyGraphic className="w-full" steps={quieleJourneySteps} />
           </div>
         </div>
       </Container>
